@@ -17,6 +17,7 @@ int buffer[64];
 int count = 0;
 int* Lista;
 int Ndatos;
+int flag = 1;
 void * Productor(void * args)
 {
     for (int i = 0; i < Ndatos; i++) 
@@ -90,18 +91,28 @@ int main ()
     printf("Este programa simula la toma y analisis de datos en una prueba de campo\n");
     printf("Bienvenido investigador.\n");
 
-    while (1)
+    while (flag)
     {
+        
+        
+
         printf("¿Que deseas hacer en este experimento?\n");
         printf("1. Tomar Datos\n");
         printf("2. Generar Lista\n");
         printf("3. Organizar Lista\n");
+        printf("4. Salir\n");
         int n;
         scanf("%d",&n);
         system("clear");
         switch (n)
         {
         case 1:
+
+
+            if (Lista != NULL)
+            {
+                free(Lista);
+            }
 
             printf("Cuantos datos desea tomar?\n");
             scanf("%d",&Ndatos);
@@ -155,6 +166,14 @@ int main ()
 
         case 3:
             OrganizarLista();
+            printf("La Lista se ha organizado de menor a mayor\n");
+        break;
+
+        case 4:
+
+            free(Lista);
+            flag = 0;
+
         break;
         default:
             printf("El valor ingresado no corresponde a ninguna opcion");
